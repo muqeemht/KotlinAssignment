@@ -8,9 +8,9 @@ import retrofit2.http.Query
 
 interface ApiEndPoint {
 
-    @GET("top-headlines")
+    @GET("everything")
     open fun getNews(
-        @Query("country") country: String?,
+        @Query("q") country: String?,
         @Query("apiKey") apiKey: String?, @Query("page") page: Long?,
         @Query("pageSize") pageSize: Int?
     ): Call<NewsRSM>

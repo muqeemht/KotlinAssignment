@@ -1,6 +1,7 @@
 
 package com.muqeem.assignment.home.datasource
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.PageKeyedDataSource
 import com.muqeem.assignment.base.constants.AppConstants
@@ -25,7 +26,9 @@ class FeedDataSource(private val connectionError: MutableLiveData<Boolean>,  pri
         params: LoadParams<Long>,
         callback: LoadCallback<Long, NewsModel>
     ) {
-        val call: Call<NewsRSM> = RestClient.retrofitService.getNews(AppConstants.country, AppConstants.API_KEY, params.key, params.requestedLoadSize)
+
+        Log.i("TAG", "Loading Rang " + params.key + " Count " + params.requestedLoadSize);
+        val call: Call<NewsRSM> = RestClient.retrofitService.getNews(AppConstants.query, AppConstants.API_KEY, params.key, params.requestedLoadSize)
         call.enqueue(object : Callback<NewsRSM> {
             override fun onResponse(
                 call: Call<NewsRSM>,
@@ -33,8 +36,8 @@ class FeedDataSource(private val connectionError: MutableLiveData<Boolean>,  pri
             ) {
                 try {
                     showHideLoading.postValue(false)
-                    val meta: Meta = response.body().getMeta()!!;
-                    if (!meta.error) {
+
+                    if (response.body() != null && !response.body().status.isNullOrEmpty()) {
 
                         val nexKey : Long? = if (params.key == response.body().totalResults) {
                             null
@@ -45,7 +48,8 @@ class FeedDataSource(private val connectionError: MutableLiveData<Boolean>,  pri
 
                         callback.onResult(response.body().getNewsList()!!, nexKey)
                     } else {
-                        requestStatus.setValue(NWRequestErrorUtil.createErrorResponse(meta))
+                      //  val meta: Meta = response.body().getMeta()!!
+                        requestStatus.setValue(NWRequestErrorUtil.createErrorResponse("Data Loading error"))
                     }
                 } catch (e: Exception) {
                     requestStatus.setValue(NWRequestErrorUtil.createErrorResponse(e.message))
@@ -69,7 +73,7 @@ class FeedDataSource(private val connectionError: MutableLiveData<Boolean>,  pri
         params: LoadInitialParams<Long>,
         callback: LoadInitialCallback<Long, NewsModel?>
     ) {
-        val call: Call<NewsRSM> = RestClient.retrofitService.getNews(AppConstants.country, AppConstants.API_KEY, 1, params.requestedLoadSize)
+        val call: Call<NewsRSM> = RestClient.retrofitService.getNews(AppConstants.query, AppConstants.API_KEY, 1, params.requestedLoadSize)
         call.enqueue(object : Callback<NewsRSM> {
             override fun onResponse(
                 call: Call<NewsRSM>,

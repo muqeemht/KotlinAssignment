@@ -17,7 +17,7 @@ class NewsModel {
     @Expose
     var urlToImage: String? = null
 
-    @SerializedName("desc")
+    @SerializedName("description")
     @Expose
     var desc: String? = null
 

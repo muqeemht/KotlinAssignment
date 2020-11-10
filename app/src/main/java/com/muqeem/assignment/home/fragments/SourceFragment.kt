@@ -20,7 +20,7 @@ class SourceFragment : BaseFragment() {
     ): View? {
         homeViewModel =
                 ViewModelProvider(this).get(NewsViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_home, container, false)
+        val root = inflater.inflate(R.layout.fragment_source, container, false)
        // val textView: TextView = root.findViewById(R.id.recyclerView)
 
         return root

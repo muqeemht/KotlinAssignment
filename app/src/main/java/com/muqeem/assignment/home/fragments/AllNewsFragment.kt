@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.Navigation
 import androidx.paging.PagedList
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -45,4 +46,9 @@ class AllNewsFragment : BaseFragment() {
         recyclerView.layoutManager = LinearLayoutManager(mActivity, RecyclerView.VERTICAL, false)
         recyclerView.adapter = newsListAdapter
            }
+
+    override fun onClick(v: View?) {
+        super.onClick(v)
+        Navigation.findNavController(view!!).navigate(AllNewsFragmentDirections.newsDetails().setNewsModel(newsListAdapter.getSelectedItem(v?.tag as Int)))
+    }
 }

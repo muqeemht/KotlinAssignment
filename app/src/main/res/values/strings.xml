@@ -4,4 +4,6 @@
     <string name="no_internet_msg">Please check Internet connection and try again.</string>
     <string name="menu_source">Source</string>
     <string name="menu_all_news">All News</string>
+    <string name="menu_news_detail">News Detail</string>
+    <string name="headlines">Headlines</string>
 </resources>

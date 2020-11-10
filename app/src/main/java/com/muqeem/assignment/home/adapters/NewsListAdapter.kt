@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.muqeem.assignment.R
 import com.muqeem.assignment.base.app.MyApplication
+import com.muqeem.assignment.home.models.NewsData
 import com.muqeem.assignment.home.models.NewsModel
 
 
@@ -25,7 +26,15 @@ class NewsListAdapter(private val mListener: View.OnClickListener) : PagedListAd
     }
 
     override fun onBindViewHolder(holder: NewsViewHolder, position: Int) {
+        holder.itemView.setTag(position)
+        holder.itemView.setOnClickListener(mListener)
         holder.bind(getItem(position))
+    }
+
+    fun getSelectedItem(pos: Int): NewsData {
+        var news: NewsModel? = getItem(pos)
+
+        return NewsData(news?.title, news?.desc, news?.urlToImage)
     }
 
 

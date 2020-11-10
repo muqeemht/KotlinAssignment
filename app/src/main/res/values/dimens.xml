@@ -3,6 +3,11 @@
     <dimen name="margin_5">5dp</dimen>
     <dimen name="margin_10">10dp</dimen>
     <dimen name="margin_100">100dp</dimen>
+    <dimen name="margin_120">102dp</dimen>
+    <dimen name="margin_200">200dp</dimen>
+    <dimen name="margin_300">300dp</dimen>
     <dimen name="SP_12">12sp</dimen>
+    <dimen name="SP_14">14sp</dimen>
     <dimen name="SP_16">16sp</dimen>
+    <dimen name="SP_18">18sp</dimen>
 </resources>

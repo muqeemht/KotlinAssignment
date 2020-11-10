@@ -3,7 +3,7 @@ package com.example.kotlinrnd.base.utils
 import android.content.Context
 import android.net.ConnectivityManager
 import android.widget.Toast
-import com.example.kotlinrnd.base.app.MyApplication
+import com.muqeem.assignment.base.app.MyApplication
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*

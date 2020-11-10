@@ -1,4 +1,4 @@
-package com.example.kotlinrnd.base.models
+package com.muqeem.assignment.base.models
 
 import com.google.gson.annotations.SerializedName
 

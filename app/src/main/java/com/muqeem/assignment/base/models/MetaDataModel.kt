@@ -1,7 +1,8 @@
-package com.example.kotlinrnd.base.models
+package com.muqeem.assignment.base.models
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import com.muqeem.assignment.base.models.Meta
 
 open class MetaDataModel {
 

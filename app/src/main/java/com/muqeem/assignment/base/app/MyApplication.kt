@@ -1,4 +1,4 @@
-package com.example.kotlinrnd.base.app
+package com.muqeem.assignment.base.app
 
 import android.app.Application
 import android.content.Context

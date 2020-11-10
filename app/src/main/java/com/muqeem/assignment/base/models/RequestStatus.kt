@@ -1,4 +1,4 @@
-package com.example.kotlinrnd.base.models
+package com.muqeem.assignment.base.models
 
 class RequestStatus{
     private var isError = false

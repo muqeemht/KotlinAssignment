@@ -1,7 +1,6 @@
-package com.example.kotlinrnd.base.network.retrofit
+package com.muqeem.assignment.base.network.retrofit
 
-import com.example.kotlinrnd.home.models.HeadlinesRSM
-import com.example.kotlinrnd.login.models.LoginRSM
+import com.muqeem.assignment.home.models.NewsRSM
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -12,11 +11,11 @@ interface ApiEndPoint {
         @Query("country") country: String?,
         @Query("apiKey") apiKey: String?,   @Query("page") page: Long?,
         @Query("pageSize") pageSize: Int?
-    ): Call<HeadlinesRSM>
+    ): Call<NewsRSM>
 
     @GET("top-headlines")
     open fun getTopHeadlines(
         @Query("country") country: String?,
         @Query("apiKey") apiKey: String?
-    ): Call<HeadlinesRSM>
+    ): Call<NewsRSM>
 }

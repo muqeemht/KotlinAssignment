@@ -2,7 +2,7 @@ package com.example.kotlinrnd.base.viewmodels
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.kotlinrnd.base.models.RequestStatus
+import com.muqeem.assignment.base.models.RequestStatus
 import com.example.kotlinrnd.base.utils.CommonUtils
 
 open class BaseVewModel : ViewModel(){

@@ -1,4 +1,6 @@
-package com.example.kotlinrnd.base.constants
+package com.muqeem.assignment.base.constants
+
+
 
 interface AppConstants {
     companion object {

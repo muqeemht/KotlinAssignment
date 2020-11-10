@@ -1,13 +1,9 @@
-package com.example.kotlinrnd.base.network.retrofit
+package com.muqeem.assignment.base.network.retrofit
 
-import com.example.kotlinrnd.BuildConfig
-import com.example.kotlinrnd.BuildConfig.BASE_URL
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.util.concurrent.TimeUnit
 
 object RestClient {
 

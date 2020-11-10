@@ -1,4 +1,4 @@
-package com.example.kotlinrnd.base.network.glide
+package com.muqeem.assignment.base.network.glide
 import com.bumptech.glide.annotation.GlideModule
 import com.bumptech.glide.module.AppGlideModule
 

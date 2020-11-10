@@ -2,9 +2,9 @@ package com.example.kotlinrnd.base.utils
 
 import android.text.TextUtils
 import com.example.kotlinrnd.R
-import com.example.kotlinrnd.base.app.MyApplication
-import com.example.kotlinrnd.base.models.Meta
-import com.example.kotlinrnd.base.models.RequestStatus
+import com.muqeem.assignment.base.app.MyApplication
+import com.muqeem.assignment.base.models.Meta
+import com.muqeem.assignment.base.models.RequestStatus
 import okhttp3.ResponseBody
 import retrofit2.Call
 import java.net.ConnectException

@@ -41,7 +41,7 @@ class AllNewsFragment : BaseFragment() {
     }
 
     private fun initAdapter() {
-        newsListAdapter = NewsListAdapter()
+        newsListAdapter = NewsListAdapter(this)
         recyclerView.layoutManager = LinearLayoutManager(mActivity, RecyclerView.VERTICAL, false)
         recyclerView.adapter = newsListAdapter
            }

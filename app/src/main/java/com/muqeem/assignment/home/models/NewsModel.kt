@@ -4,7 +4,8 @@ import androidx.recyclerview.widget.DiffUtil
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-class NewsModel {
+
+class NewsModel  {
 
     @Transient
     private var id: Int = 0

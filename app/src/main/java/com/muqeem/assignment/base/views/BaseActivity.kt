@@ -10,11 +10,10 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
-import androidx.navigation.ui.AppBarConfiguration
-import com.example.kotlinrnd.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
+import com.muqeem.assignment.R
 
 open class BaseActivity : AppCompatActivity(){
 //    var navigationView: NavigationView? = null

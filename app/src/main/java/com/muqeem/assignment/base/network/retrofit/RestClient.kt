@@ -1,6 +1,7 @@
 package com.muqeem.assignment.base.network.retrofit
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+import com.muqeem.assignment.BuildConfig.BASE_URL
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

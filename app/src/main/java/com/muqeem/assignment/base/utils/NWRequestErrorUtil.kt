@@ -1,7 +1,7 @@
 package com.example.kotlinrnd.base.utils
 
 import android.text.TextUtils
-import com.example.kotlinrnd.R
+import com.muqeem.assignment.R
 import com.muqeem.assignment.base.app.MyApplication
 import com.muqeem.assignment.base.models.Meta
 import com.muqeem.assignment.base.models.RequestStatus

@@ -4,10 +4,10 @@ import android.content.Context
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import com.example.kotlinrnd.R
 import com.muqeem.assignment.base.models.RequestStatus
 import com.example.kotlinrnd.base.utils.CommonUtils
 import com.example.kotlinrnd.base.viewmodels.BaseVewModel
+import com.muqeem.assignment.R
 
 open class BaseFragment : Fragment(),  View.OnClickListener {
     override fun onClick(v: View?) {

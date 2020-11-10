@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
-import com.example.kotlinrnd.R
+import com.muqeem.assignment.R
 
 class LoadingDialog {
     companion object {

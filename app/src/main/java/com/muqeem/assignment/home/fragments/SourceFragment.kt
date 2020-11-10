@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlinrnd.base.views.BaseFragment
@@ -41,8 +42,13 @@ class SourceFragment : BaseFragment() {
     }
 
     private fun initAdapter() {
-        sourceAdapter = SourceListAdapter()
+        sourceAdapter = SourceListAdapter(this)
         recyclerView.layoutManager = LinearLayoutManager(mActivity, RecyclerView.VERTICAL, false)
         recyclerView.adapter = sourceAdapter
+    }
+
+    override fun onClick(v: View?) {
+        super.onClick(v)
+        Navigation.findNavController(view!!).navigate(SourceFragmentDirections.topHeadlines().setSourceName(v?.tag as String))
     }
 }

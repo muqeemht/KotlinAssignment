@@ -8,12 +8,12 @@ import com.muqeem.assignment.R
 import com.muqeem.assignment.home.models.SourceModel
 
 
-class SourceListAdapter : RecyclerView.Adapter<SourceListAdapter.NewsViewHolder>() {
+class SourceListAdapter(private val mListener: View.OnClickListener) : RecyclerView.Adapter<SourceListAdapter.NewsViewHolder>() {
     private var sourcesList: List<SourceModel>? = null
 
     fun updateData(sourcesList: List<SourceModel>?){
         this.sourcesList = sourcesList
-        notifyDataSetChanged();
+        notifyDataSetChanged()
     }
 
 
@@ -28,7 +28,11 @@ class SourceListAdapter : RecyclerView.Adapter<SourceListAdapter.NewsViewHolder>
     }
 
     override fun onBindViewHolder(holder: NewsViewHolder, position: Int) {
+        holder.itemView.setTag(sourcesList?.get(position)?.source)
+        holder.itemView.setOnClickListener(mListener)
         sourcesList?.get(position)?.let { holder.bind(it) }
+
+
     }
 
 
@@ -36,6 +40,7 @@ class SourceListAdapter : RecyclerView.Adapter<SourceListAdapter.NewsViewHolder>
 
         fun bind(news: SourceModel) {
             if (news != null) {
+
                 val newsTitle = itemView.findViewById(R.id.tv_title) as TextView
                 newsTitle.text = news.name
 

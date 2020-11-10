@@ -21,6 +21,10 @@ class NewsModel {
     @Expose
     var desc: String? = null
 
+    @SerializedName("author")
+    @Expose
+    var author: String? = null
+
 
 
     constructor(){

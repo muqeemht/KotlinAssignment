@@ -15,13 +15,13 @@ interface ApiEndPoint {
         @Query("pageSize") pageSize: Int?
     ): Call<NewsRSM>
 
-    @GET("sources")
+    @GET("top-headlines")
     open fun getTopHeadlines(
-        @Query("country") country: String?,
+        @Query("sources") country: String?,
         @Query("apiKey") apiKey: String?,
         @Query("page") page: Long?,
     @Query("pageSize") pageSize: Int?
-    ): Call<SourceRSM>
+    ): Call<NewsRSM>
 
     @GET("sources")
     open fun getNewsSources(

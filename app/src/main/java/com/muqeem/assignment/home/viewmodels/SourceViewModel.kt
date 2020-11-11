@@ -6,15 +6,21 @@ import com.example.kotlinrnd.base.utils.NWRequestErrorUtil
 import com.example.kotlinrnd.base.viewmodels.BaseVewModel
 import com.muqeem.assignment.base.constants.AppConstants
 import com.muqeem.assignment.base.models.Meta
+import com.muqeem.assignment.base.network.retrofit.ApiEndPoint
 import com.muqeem.assignment.base.network.retrofit.RestClient
+import com.muqeem.assignment.base.network.retrofit.RetrofitModule
 import com.muqeem.assignment.home.models.SourceModel
 import com.muqeem.assignment.home.models.SourceRSM
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import javax.inject.Inject
 
 
 class SourceViewModel : BaseVewModel() {
+    @Inject
+    lateinit var apiInterface: ApiEndPoint
+
     private val sourcesList: MutableLiveData<List<SourceModel>> by lazy {
         MutableLiveData<List<SourceModel>>();
     }
@@ -27,7 +33,6 @@ class SourceViewModel : BaseVewModel() {
 
 
     private fun getNewsSources() {
-
        // if (!isNetworkConnected()) return
         showHideLoading.setValue(true)
         val call: Call<SourceRSM> = RestClient.retrofitService.getNewsSources(AppConstants.API_KEY)

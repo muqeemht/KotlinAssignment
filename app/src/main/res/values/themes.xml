@@ -34,6 +34,7 @@
     </style>
 
     <style name="MyTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
         <item name="android:windowNoTitle">true</item>
         <item name="windowActionBar">true</item>
     </style>

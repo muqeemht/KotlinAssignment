@@ -10,6 +10,7 @@ import com.muqeem.assignment.base.dagger.component.modules.AppComponent
 import com.muqeem.assignment.base.dagger.component.modules.DaggerAppComponent
 import com.muqeem.assignment.base.models.Meta
 import com.muqeem.assignment.base.network.retrofit.ApiEndPoint
+import com.muqeem.assignment.base.network.retrofit.RestClient
 import com.muqeem.assignment.base.network.retrofit.RetrofitModule
 import com.muqeem.assignment.home.models.SourceModel
 import com.muqeem.assignment.home.models.SourceRSM
@@ -36,7 +37,7 @@ class SourceViewModel : BaseVewModel() {
     private fun getNewsSources() {
        // if (!isNetworkConnected()) return
         showHideLoading.setValue(true)
-        val call: Call<SourceRSM> = apiInterface.getNewsSources(AppConstants.API_KEY)
+        val call: Call<SourceRSM> = RestClient.retrofitService.getNewsSources(AppConstants.API_KEY)
         call.enqueue(object : Callback<SourceRSM> {
             override fun onResponse(
                 call: Call<SourceRSM>,

@@ -14,7 +14,7 @@ class MyApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         mContext = this
-        appComponent = DaggerAppComponent.builder().retrofitModule(RetrofitModule()).build()
+        appComponent = DaggerAppComponent.builder().build()
         appComponent.injectApplication(this)
 
 //        Realm.init(this)

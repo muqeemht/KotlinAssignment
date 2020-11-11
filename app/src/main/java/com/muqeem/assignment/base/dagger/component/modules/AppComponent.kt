@@ -13,6 +13,5 @@ import javax.inject.Singleton
 @Component(modules = [AppModule::class, RetrofitModule::class])
 interface AppComponent {
     fun getApiInterface(): ApiEndPoint
-    fun inject(retrofitRepository: ApiEndPoint)
     fun injectApplication(myApplication: MyApplication)
 }

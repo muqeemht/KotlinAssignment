@@ -73,28 +73,27 @@ class HeadlinesDataSource(private val connectionError: MutableLiveData<Boolean>,
         params: LoadInitialParams<Long>,
         callback: LoadInitialCallback<Long, NewsModel?>
     ) {
-        val call: Call<NewsRSM> = RestClient.retrofitService.getNews(AppConstants.query, AppConstants.API_KEY, 1, params.requestedLoadSize)
+        val call: Call<NewsRSM> = RestClient.retrofitService.getTopHeadlines(sourceName, AppConstants.API_KEY, 1, params.requestedLoadSize)
         call.enqueue(object : Callback<NewsRSM> {
             override fun onResponse(
                 call: Call<NewsRSM>,
                 response: Response<NewsRSM>
             ) {
                 try {
-                    showHideLoading.setValue(false)
+                    showHideLoading.postValue(false)
 
                     if (!response.body().status.isNullOrEmpty()) {
                         callback.onResult(response.body().getNewsList()!!, null, 21)
                     } else {
-                        val meta: Meta = response.body().getMeta()!!;
-                        requestStatus.setValue(NWRequestErrorUtil.createErrorResponse(meta))
+                        requestStatus.setValue(NWRequestErrorUtil.createErrorResponse("Error on data loading"))
                     }
                 } catch (e: Exception) {
-                    requestStatus.setValue(NWRequestErrorUtil.createErrorResponse(e.message))
+                    requestStatus.postValue(NWRequestErrorUtil.createErrorResponse(e.message))
                 }
             }
 
             override fun onFailure(call: Call<NewsRSM>, t: Throwable) {
-                requestStatus.setValue(NWRequestErrorUtil.createErrorResponse(t.message))
+                requestStatus.postValue(NWRequestErrorUtil.createErrorResponse(t.message))
             }
         })
     }

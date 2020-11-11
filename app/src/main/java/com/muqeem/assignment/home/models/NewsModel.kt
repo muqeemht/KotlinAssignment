@@ -5,6 +5,7 @@ import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
 
+
 class NewsModel  {
 
     @Transient
@@ -25,6 +26,12 @@ class NewsModel  {
     @SerializedName("author")
     @Expose
     var author: String? = null
+
+    @SerializedName("source")
+    @Expose
+    var newsSource: NewsSourceModel? = null
+
+
 
 
 

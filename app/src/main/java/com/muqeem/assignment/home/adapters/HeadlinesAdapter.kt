@@ -47,7 +47,7 @@ class HeadlinesAdapter(private val mListener: View.OnClickListener) : PagedListA
                 val newsDesc = itemView.findViewById(R.id.tv_desc) as TextView
                 val imageView = itemView.findViewById(R.id.image_view) as ImageView
                 newsTitle.text = news.title
-                newsDesc.text = news.author
+                newsDesc.text = news.newsSource?.sourceName
 
                 Glide.with(MyApplication.getAppContext())
                     .load(news.urlToImage)

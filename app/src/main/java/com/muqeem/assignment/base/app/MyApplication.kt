@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.Context
 import com.muqeem.assignment.base.dagger.component.modules.AppComponent
 import com.muqeem.assignment.base.dagger.component.modules.DaggerAppComponent
+import com.muqeem.assignment.base.network.retrofit.RetrofitModule
 
 //import io.realm.Realm
 //import io.realm.RealmConfiguration
@@ -12,15 +13,14 @@ class MyApplication : Application() {
     private  lateinit var appComponent: AppComponent
     override fun onCreate() {
         super.onCreate()
-        appComponent = DaggerAppComponent.builder().build()
+        mContext = this
+        appComponent = DaggerAppComponent.builder().retrofitModule(RetrofitModule()).build()
         appComponent.injectApplication(this)
 
-
-       // appComponent = DaggerAppComponent.create()
 //        Realm.init(this)
 //        val config = RealmConfiguration.Builder().build()
 //        Realm.setDefaultConfiguration(config)
-        mContext = this
+
     }
 
     fun getAppComponent(): AppComponent? {

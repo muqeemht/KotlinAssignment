@@ -27,6 +27,7 @@ class NewsModel  {
     @Expose
     var author: String? = null
 
+
     @SerializedName("source")
     @Expose
     var newsSource: NewsSourceModel? = null

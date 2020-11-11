@@ -17,8 +17,8 @@ import javax.inject.Singleton
 
 @Module
 class RetrofitModule {
-    @Singleton
     @Provides
+    @ApplicationScope
     fun provideRetrofit(): Retrofit {
         var context: Context = MyApplication.getAppContext()
         val cache = Cache(context.cacheDir!!, 5 * 1024 * 1024)

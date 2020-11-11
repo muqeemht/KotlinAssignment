@@ -39,17 +39,19 @@ class FeedDataSource(private val connectionError: MutableLiveData<Boolean>,  pri
 
                     if (response.body() != null && !response.body().status.isNullOrEmpty()) {
 
-                        val nexKey : Long? = if (params.key == response.body().totalResults) {
-                            null
+                         var nextKey: Long? = null
 
+                        if(params.key == response.body().totalResults){
+                            nextKey =  null;
                         }else{
-                            params.key+1
+                            nextKey = params.key+1
                         }
 
-                        callback.onResult(response.body().getNewsList()!!, nexKey)
+
+                        callback.onResult(response.body().getNewsList()!!, nextKey)
                     } else {
                       //  val meta: Meta = response.body().getMeta()!!
-                        requestStatus.setValue(NWRequestErrorUtil.createErrorResponse("Data Loading error"))
+                       // requestStatus.setValue(NWRequestErrorUtil.createErrorResponse("Data Loading error"))
                     }
                 } catch (e: Exception) {
                     requestStatus.setValue(NWRequestErrorUtil.createErrorResponse(e.message))
@@ -83,7 +85,7 @@ class FeedDataSource(private val connectionError: MutableLiveData<Boolean>,  pri
                     showHideLoading.setValue(false)
 
                     if (!response.body().status.isNullOrEmpty()) {
-                        callback.onResult(response.body().getNewsList()!!, null, 21)
+                        callback.onResult(response.body().getNewsList()!!, null, 2)
                     } else {
                         val meta: Meta = response.body().getMeta()!!;
                         requestStatus.setValue(NWRequestErrorUtil.createErrorResponse(meta))

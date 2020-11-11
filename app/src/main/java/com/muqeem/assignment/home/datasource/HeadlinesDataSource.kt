@@ -83,7 +83,7 @@ class HeadlinesDataSource(private val connectionError: MutableLiveData<Boolean>,
                     showHideLoading.postValue(false)
 
                     if (!response.body().status.isNullOrEmpty()) {
-                        callback.onResult(response.body().getNewsList()!!, null, 21)
+                        callback.onResult(response.body().getNewsList()!!, null, 2)
                     } else {
                         requestStatus.setValue(NWRequestErrorUtil.createErrorResponse("Error on data loading"))
                     }

@@ -10,16 +10,9 @@ open class MetaDataModel {
     @Expose
     var status: String? = null
 
-    @SerializedName("Meta")
+    @SerializedName("message")
     @Expose
-    private var meta: Meta? = null
+    var message: String? = null
 
-    open fun getMeta(): Meta? {
-        return meta
-    }
-
-    open fun setMeta(meta: Meta?) {
-        this.meta = meta
-    }
 
 }

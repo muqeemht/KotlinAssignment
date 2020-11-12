@@ -10,7 +10,6 @@ import com.muqeem.assignment.base.network.retrofit.RetrofitModule
 //import io.realm.RealmConfiguration
 
 class MyApplication : Application() {
-    private  lateinit var appComponent: AppComponent
     override fun onCreate() {
         super.onCreate()
         mContext = this
@@ -23,14 +22,22 @@ class MyApplication : Application() {
 
     }
 
-    fun getAppComponent(): AppComponent? {
-        return appComponent
-    }
+
+
 
     companion object {
         lateinit var mContext: Context
+        private  lateinit var appComponent: AppComponent
+
         fun getAppContext() : Context{
             return mContext
         }
+
+        fun getAppComponent(): AppComponent{
+            return appComponent
+        }
+
+
+
     }
 }

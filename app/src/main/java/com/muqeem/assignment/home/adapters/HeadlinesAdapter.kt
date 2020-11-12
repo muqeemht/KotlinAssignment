@@ -13,7 +13,7 @@ import com.muqeem.assignment.home.models.NewsData
 import com.muqeem.assignment.home.models.NewsModel
 
 
-class HeadlinesAdapter(private val mListener: View.OnClickListener) : PagedListAdapter<NewsModel, HeadlinesAdapter.NewsViewHolder?>(NewsModel.diffCallback) {
+class HeadlinesAdapter(private val mListener: View.OnClickListener) : PagedListAdapter<NewsModel, HeadlinesAdapter.NewsViewHolder>(NewsModel.diffCallback) {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,

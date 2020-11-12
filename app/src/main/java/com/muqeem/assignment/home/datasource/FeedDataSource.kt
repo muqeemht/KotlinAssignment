@@ -4,11 +4,10 @@ package com.muqeem.assignment.home.datasource
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.PageKeyedDataSource
-import com.muqeem.assignment.base.constants.AppConstants
-import com.muqeem.assignment.base.models.Meta
-import com.muqeem.assignment.base.models.RequestStatus
-import com.muqeem.assignment.base.network.retrofit.RestClient
 import com.example.kotlinrnd.base.utils.NWRequestErrorUtil
+import com.muqeem.assignment.base.app.MyApplication
+import com.muqeem.assignment.base.constants.AppConstants
+import com.muqeem.assignment.base.models.RequestStatus
 import com.muqeem.assignment.home.models.NewsModel
 import com.muqeem.assignment.home.models.NewsRSM
 import retrofit2.Call
@@ -20,7 +19,8 @@ class FeedDataSource(private val connectionError: MutableLiveData<Boolean>,  pri
 
                      private val requestStatus: MutableLiveData<RequestStatus>
 
-                     ) :PageKeyedDataSource<Long, NewsModel>() {
+) :PageKeyedDataSource<Long, NewsModel>() {
+    var apiInterface = MyApplication.getAppComponent().getApiInterface()
 
     override fun loadAfter(
         params: LoadParams<Long>,
@@ -28,7 +28,7 @@ class FeedDataSource(private val connectionError: MutableLiveData<Boolean>,  pri
     ) {
 
         Log.i("TAG", "Loading Rang " + params.key + " Count " + params.requestedLoadSize);
-        val call: Call<NewsRSM> = RestClient.retrofitService.getNews(AppConstants.query, AppConstants.API_KEY, params.key, params.requestedLoadSize)
+        val call: Call<NewsRSM> = apiInterface.getNews(AppConstants.query, AppConstants.API_KEY, params.key, params.requestedLoadSize)
         call.enqueue(object : Callback<NewsRSM> {
             override fun onResponse(
                 call: Call<NewsRSM>,
@@ -39,7 +39,7 @@ class FeedDataSource(private val connectionError: MutableLiveData<Boolean>,  pri
 
                     if (response.body() != null && !response.body().status.isNullOrEmpty()) {
 
-                         var nextKey: Long? = null
+                        var nextKey: Long? = null
 
                         if(params.key == response.body().totalResults){
                             nextKey =  null;
@@ -50,8 +50,7 @@ class FeedDataSource(private val connectionError: MutableLiveData<Boolean>,  pri
 
                         callback.onResult(response.body().getNewsList()!!, nextKey)
                     } else {
-                      //  val meta: Meta = response.body().getMeta()!!
-                       // requestStatus.setValue(NWRequestErrorUtil.createErrorResponse("Data Loading error"))
+                        requestStatus.setValue(NWRequestErrorUtil.createErrorResponse(response.errorBody().string()))
                     }
                 } catch (e: Exception) {
                     requestStatus.setValue(NWRequestErrorUtil.createErrorResponse(e.message))
@@ -64,39 +63,35 @@ class FeedDataSource(private val connectionError: MutableLiveData<Boolean>,  pri
         })
     }
 
-    override fun loadBefore(
-        params: LoadParams<Long>,
-        callback: LoadCallback<Long, NewsModel?>
-    ) {
+    override fun loadBefore(params: LoadParams<Long>, callback: LoadCallback<Long, NewsModel>) {
         TODO("Not yet implemented")
     }
 
     override fun loadInitial(
         params: LoadInitialParams<Long>,
-        callback: LoadInitialCallback<Long, NewsModel?>
+        callback: LoadInitialCallback<Long, NewsModel>
     ) {
-        val call: Call<NewsRSM> = RestClient.retrofitService.getNews(AppConstants.query, AppConstants.API_KEY, 1, params.requestedLoadSize)
+        val call: Call<NewsRSM> = apiInterface.getNews(AppConstants.query, AppConstants.API_KEY, 1, params.requestedLoadSize)
         call.enqueue(object : Callback<NewsRSM> {
             override fun onResponse(
                 call: Call<NewsRSM>,
                 response: Response<NewsRSM>
             ) {
                 try {
-                    showHideLoading.setValue(false)
+                    showHideLoading.postValue(false)
 
-                    if (!response.body().status.isNullOrEmpty()) {
+                    if (response.isSuccessful) {
                         callback.onResult(response.body().getNewsList()!!, null, 2)
                     } else {
-                        val meta: Meta = response.body().getMeta()!!;
-                        requestStatus.setValue(NWRequestErrorUtil.createErrorResponse(meta))
+                        requestStatus.setValue(NWRequestErrorUtil.createErrorResponse(response.errorBody().string()))
                     }
                 } catch (e: Exception) {
-                    requestStatus.setValue(NWRequestErrorUtil.createErrorResponse(e.message))
+                    requestStatus.postValue(NWRequestErrorUtil.createErrorResponse(e.message))
                 }
             }
 
             override fun onFailure(call: Call<NewsRSM>, t: Throwable) {
-                requestStatus.setValue(NWRequestErrorUtil.createErrorResponse(t.message))
+                requestStatus.postValue(NWRequestErrorUtil.createErrorResponse(t.message))
             }
         })
     }

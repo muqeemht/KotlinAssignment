@@ -22,11 +22,22 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    signingConfigs {
+        release {
+            storeFile file("keystores/keystore.jks")
+            storePassword 'muqeem'
+            keyAlias 'key0'
+            keyPassword 'muqeem'
+        }
+    }
+
     buildTypes {
         release {
+            shrinkResources false
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             buildConfigField "String", "BASE_URL", '"https://newsapi.org/v2/"'
+            signingConfig signingConfigs.release
         }
 
         debug {

@@ -50,6 +50,7 @@ class SourceFragment : BaseFragment() {
 
     override fun onClick(v: View?) {
         super.onClick(v)
+        Navigation.findNavController(view!!).popBackStack(R.id.nav_home, false)
         Navigation.findNavController(view!!).navigate(SourceFragmentDirections.topHeadlines().setSourceName(v?.tag as String))
     }
 }

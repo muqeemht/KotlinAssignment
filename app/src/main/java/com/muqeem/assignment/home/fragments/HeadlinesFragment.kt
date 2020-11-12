@@ -52,6 +52,7 @@ class HeadlinesFragment : BaseFragment() {
 
     override fun onClick(v: View?) {
         super.onClick(v)
+        Navigation.findNavController(view!!).popBackStack(R.id.nav_headlines, false)
         Navigation.findNavController(view!!).navigate(HeadlinesFragmentDirections.newsDetails().setNewsModel(newsListAdapter.getSelectedItem(v?.tag as Int)))
     }
 }

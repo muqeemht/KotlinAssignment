@@ -6,7 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.NavController
+import androidx.navigation.NavDirections
 import androidx.navigation.Navigation
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.paging.PagedList
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -49,6 +53,22 @@ class AllNewsFragment : BaseFragment() {
 
     override fun onClick(v: View?) {
         super.onClick(v)
+
+        Navigation.findNavController(view!!).popBackStack(R.id.nav_all_news, false)
         Navigation.findNavController(view!!).navigate(AllNewsFragmentDirections.newsDetails().setNewsModel(newsListAdapter.getSelectedItem(v?.tag as Int)))
+    }
+
+    fun NavController.navigateSafe(
+        navDirections: NavDirections? = null
+    ) {
+        try {
+            navDirections?.let {
+                this.navigate(navDirections)
+            }
+        }
+        catch (e:Exception)
+        {
+            e.printStackTrace()
+        }
     }
 }

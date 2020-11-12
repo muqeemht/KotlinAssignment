@@ -13,7 +13,7 @@ class MainActivity : BaseActivity() {
         setContentView(R.layout.activity_main)
         bottomNav = findViewById(R.id.bottomNav)
 
-        navController = Navigation.findNavController(this, R.id.fragment)
+        navController = Navigation.findNavController(this, R.id.nav_host_fragment)
         bottomNav.setupWithNavController(navController)
         NavigationUI.setupActionBarWithNavController(this, navController)
 
